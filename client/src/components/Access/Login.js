@@ -17,7 +17,7 @@ class Login extends Component {
         e.preventDefault();
         // SEND DATA
         let { email, password } = this.state;
-        let user = await httpClient.authenticate({ email, password }, "/pio/users/authenticate");
+        let user = await httpClient.authenticate({ email, password }, "/api/users/authenticate");
         this.setState({ email: "", password: "" });
         debugger
         if (user) {

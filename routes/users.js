@@ -13,5 +13,9 @@ usersRouter.use(verifyToken);
 usersRouter.get('/:id', usersCtrl.show)
 usersRouter.patch('/:id', usersCtrl.update)
 usersRouter.delete('/:id', usersCtrl.destroy)
+usersRouter.post('/:id/days')
+usersRouter.get('/:id/days/:dayId') 
+usersRouter.patch('/:id/days/:dayId') 
+usersRouter.delete('/:id/days/:dayId') 
 
 module.exports = usersRouter

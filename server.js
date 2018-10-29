@@ -7,7 +7,8 @@ const
     mongoose = require('mongoose'),
     MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/put-it-on',
     PORT=3001;
-    usersRoutes = require('./routes/users.js'),
+    usersRoutes = require('./routes/users.js')
+    
 	
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (err) => {
@@ -17,13 +18,15 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (err) => {
 
 app.use(logger('dev'))
 app.use(express.json())
+// app.use('users', usersRoutes)
 
 
-app.get('/pio', (req, res) => {
+app.get('/api', (req, res) => {
     res.json({message: "Put It On root."})
 })
 
-app.use('/pio/users', usersRoutes)
+app.use('/api/users', usersRoutes),
+app.use('/api/days', usersRoutes)
 
 
 app.listen(PORT, (err) => {

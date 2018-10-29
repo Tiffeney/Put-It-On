@@ -17,7 +17,7 @@ class Signup extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         let { email, password, name } = this.state;
-        let user = await httpClient.authenticate({ email, password, name }, "/pio/users");
+        let user = await httpClient.authenticate({ email, password, name }, "/api/users");
         this.setState({ email: "", password: "", name: "" });
         if (user) {
             this.props.onSignupSuccess();

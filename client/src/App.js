@@ -7,7 +7,6 @@ import Logout from './components/Access/Logout'
 import Signup from './components/Access/Signup';
 import Profile from './components/Access/Profile';
 import httpClient from './utilities/httpClient';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {

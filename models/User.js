@@ -1,14 +1,28 @@
 const
 	mongoose = require('mongoose'),
-    bcrypt = require('bcrypt-nodejs')
+    bcrypt = require('bcrypt-nodejs');
     
+const mealSchema = new mongoose.Schema({
+	nameOfMeal: String,
+	carbs: Number,
+	fats: Number,
+	proteins: Number,
+	calories: Number,
+});
 
-const
-	userSchema = new mongoose.Schema({
-		name: { type: String },
-		email: { type: String, required: true, unique: true },
-		password: { type: String, required: true }
-	})
+const daySchema = new mongoose.Schema({ 
+	calories: Number,
+	weight: Number,
+	date: { type: Date, default: Date.now },
+	meals: [mealSchema]
+});
+	
+const userSchema = new mongoose.Schema({
+	name: { type: String },
+	email: { type: String, required: true, unique: true },
+	password: { type: String, required: true },
+	days: [daySchema]
+});
 
 // adds a method to a user document object to create a hashed password
 userSchema.methods.generateHash = function(password) {
