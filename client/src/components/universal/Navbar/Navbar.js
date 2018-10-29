@@ -8,7 +8,7 @@ export default ({ currentUser }) => {
             <div className="float-left">
                 <span className="nav-link">PIO</span>
                 <Link className="nav-link" to="/">Home</Link>
-                <Link className="nav-link" to="/vip">VIP</Link>
+                <Link className="nav-link" to="/profile">Profile</Link>
             </div>
             <div className="float-right">
                 {currentUser

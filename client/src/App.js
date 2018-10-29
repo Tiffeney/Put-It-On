@@ -5,7 +5,7 @@ import Home from './components/Access/Home';
 import Login from './components/Access/Login';
 import Logout from './components/Access/Logout'
 import Signup from './components/Access/Signup';
-import VIP from './components/Access/VIP';
+import Profile from './components/Access/Profile';
 import httpClient from './utilities/httpClient';
 import logo from './logo.svg';
 import './App.css';
@@ -38,8 +38,8 @@ class App extends Component {
             <Route path="/signup" render={(props) => {
               return <Signup {...props} onSignupSuccess={onAuthSuccess}/>
             }}/>
-            <Route path="/vip" component={() => {
-              return currentUser ?  <VIP /> : <Redirect to="/login" />
+            <Route path="/profile" component={() => {
+              return currentUser ?  <Profile /> : <Redirect to="/login" />
             }} />
           
         </Switch>
