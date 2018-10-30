@@ -11,9 +11,10 @@ const mealSchema = new mongoose.Schema({
 });
 
 const daySchema = new mongoose.Schema({ 
-	calories: Number,
+	caloriesLeft: Number,
 	weight: Number,
-	date: { type: Date, default: Date.now },
+	// date: { type: Date, default: Date.now, unique: true },
+	date: { type: String, unique: true },
 	meals: [mealSchema]
 });
 	

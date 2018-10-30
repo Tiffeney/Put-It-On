@@ -17,5 +17,4 @@ usersRouter.patch('/:id', usersCtrl.update)
 usersRouter.delete('/:id', usersCtrl.destroy)
 
 
-
 module.exports = usersRouter

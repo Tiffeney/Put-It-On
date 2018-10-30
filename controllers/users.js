@@ -62,41 +62,52 @@ module.exports = {
 	},
 
 // A Day doesn't exist without having a User. A User must have a JWT in order to hint the daysrouter
-	// listDays: (req, res) => {
-	// 	console.log("req", req.user)
-	// 	let { user } = req;
-	// 	User.findById(user.id, (err, user) => {
-	// 		if (err) res.json({ success: false, err })
-	// 		res.json({ success: true, user })
-	// 	})
-		
-	// },
 	listDays: (req, res) => {
-		res.json({sucess:true, days:req.user.days})
-	},
-	
-	createDay: (req, res) => {
-		console.log("REQ", req.user)
-		let { user } = req; 
+		console.log("req", req.user)
+		let { user } = req;
 		User.findById(user.id, (err, user) => {
 			if (err) res.json({ success: false, err })
-			user.days.push(req.body)
+			res.json({ success: true, user })
+		})
+		
+	},
+	// listDays: (req, res) => {
+	// 	res.json({sucess:true, days:req.user.days})
+	// },
+	
+	createDay: (req, res) => {
+		let { user } = req; 
+		User.findById(user.id, (err, user) => {
+			if (err) res.json({ success: false, err });
 
+			// If day already exists.
+			let exists;
+			user.days.forEach(day => {
+				if (day.date === req.body.date) exists =  true;
+			});
+
+			if (exists) res.json({ success: false, message: "Date Already exits." })
+			user.days.push(req.body)
 			user.save((err, day) => {
 				if (err) res.json({ success: false, err })
 				res.json({success: true, user })
 			})
 		})
-	}
+	},
 
-	// updateDay: (req, res) => {
-	// 	console.log("REQ", req.user)
-	// 	let { user, dayId } = req.params;
-	// 	let { body } = req;
-	// 	User.findById(dayId, (err, day) => {
-	// 		if (err) res.json({ success: false, err})
-	// 	})
-	// }
+
+	updateDay: (req, res) => {
+		let { user } = req;
+		let { dayId} = 
+		User.findByIdAndUpdate(user.id, req.body, (err, user) => {
+			if (err) res.json({ success: false, err })
+			
+			user.save((err, day) => {
+				if (err) res.json({ success: false, err});
+				res.json({success: true, user})
+			})
+		})
+	}	
 
 }
 
