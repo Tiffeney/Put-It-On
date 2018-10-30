@@ -49,6 +49,7 @@ module.exports = {
 
 	// Authenticate User / Login Action
 	authenticate: (req, res) => {
+		console.log("user")
 		let { email, password } = req.body;
 		User.findOne({ email }, (err, user) => {
 			if (!user || !user.validPassword(password)) {
@@ -58,5 +59,34 @@ module.exports = {
 			const token = signToken(user);
 			res.json({ success: true, token });
 		})
+	},
+
+//Days Controller
+	listDays: (req, res) => {
+		res.json({sucess:true, days:req.user.days})
+	},
+	createDay: (req, res) => {
+    
+		console.log("REQ", req.user)
+
+		let { user } = req;
+		User.findById(user.id, (err, user) => {
+			if (err) res.json({ success: false, err })
+			user.days.push(req.body)
+
+			user.save((err, day) => {
+				if (err) res.json({ success: false, err })
+				res.json({success: true, user })
+			})
+		})
 	}
+
+	// }
+	/*
+addDay
+- find User
+- push day object to user's days array
+- save user
+	*/
 }
+
