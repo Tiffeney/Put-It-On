@@ -8,6 +8,7 @@ const
 daysRouter.use(verifyToken);
 daysRouter.get('/', usersCtrl.listDays),
 daysRouter.post('/', usersCtrl.createDay)
+// daysRouter.patch('/:id/days/:dayId', usersCtrl.updateDay) 
 
 
 

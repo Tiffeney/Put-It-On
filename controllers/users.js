@@ -61,15 +61,23 @@ module.exports = {
 		})
 	},
 
-//Days Controller
+// A Day doesn't exist without having a User. A User must have a JWT in order to hint the daysrouter
+	// listDays: (req, res) => {
+	// 	console.log("req", req.user)
+	// 	let { user } = req;
+	// 	User.findById(user.id, (err, user) => {
+	// 		if (err) res.json({ success: false, err })
+	// 		res.json({ success: true, user })
+	// 	})
+		
+	// },
 	listDays: (req, res) => {
 		res.json({sucess:true, days:req.user.days})
 	},
+	
 	createDay: (req, res) => {
-    
 		console.log("REQ", req.user)
-
-		let { user } = req;
+		let { user } = req; 
 		User.findById(user.id, (err, user) => {
 			if (err) res.json({ success: false, err })
 			user.days.push(req.body)
@@ -81,12 +89,14 @@ module.exports = {
 		})
 	}
 
+	// updateDay: (req, res) => {
+	// 	console.log("REQ", req.user)
+	// 	let { user, dayId } = req.params;
+	// 	let { body } = req;
+	// 	User.findById(dayId, (err, day) => {
+	// 		if (err) res.json({ success: false, err})
+	// 	})
 	// }
-	/*
-addDay
-- find User
-- push day object to user's days array
-- save user
-	*/
+
 }
 
