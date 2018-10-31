@@ -109,22 +109,20 @@ module.exports = {
 				res.json({success: true, user })
 			})
 		})	
-	}
+	},
 
-	// deleteMeal: (req, res) => {
-	// 	let { dayId, meal_id } = req.params;
-	// 	User.findById(req.user.id, (err, user) => {
-	// 		if (err) res.json({ success: false, err });
-	// 		let day = user.days.id(dayId);
-	// 		let meal = user.days.id.meal(meal_id)
+	deleteMeal: (req, res) => {
+		let { dayId, meal_id } = req.params;
+		User.findById(req.user.id, (err, user) => {
+			if (err) res.json({ success: false, err });
+			let day = user.days.id(dayId);
+			day.meals.remove(meal_id)
+				user.save((err, user) => {
+					if (err) res.json({ success: false, err })
+					res.json({success: true, user })
+				})
 			
-	// 			user.remove();
-	// 			user.save((err, user) => {
-	// 				if (err) res.json({ success: false, err })
-	// 				res.json({success: true, user })
-	// 			})
-			
-	// 	})
-	// }
+		})
+	}
 }
 
