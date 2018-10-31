@@ -9,8 +9,9 @@ daysRouter.use(verifyToken);
 daysRouter.get('/', usersCtrl.listDays),
 daysRouter.post('/', usersCtrl.createDay),
 //Create A meal & delete a meal
-daysRouter.post('/days/:dayId', usersCtrl.updateDay) 
-daysRouter.delete('/days/:dayId', usersCtrl.updateDay) 
+
+daysRouter.post('/days/:dayId', usersCtrl.createMeal) 
+// daysRouter.delete('/days/:dayId', usersCtrl.updateDay) 
 
 // daysRouter.get('/:id/days/:dayId', daysCtrl.show) 
 // daysRouter.patch('/:id/days/:dayId', daysCtrl.update) 

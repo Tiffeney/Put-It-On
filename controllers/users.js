@@ -94,20 +94,17 @@ module.exports = {
 			})
 		})
 	},
+	
+	createMeal: (req, res) => {
+		User.findById(req.user.id, (err, user) => {
+			user.days.meals.push(req.body);
+			user.days.caloriesLeft = user.days.caloriesLeft - req.body.calories;
 
-
-	updateDay: (req, res) => {
-		let { user } = req;
-		let { dayId} = 
-		User.findByIdAndUpdate(user.id, req.body, (err, user) => {
-			if (err) res.json({ success: false, err })
-			
 			user.save((err, day) => {
-				if (err) res.json({ success: false, err});
-				res.json({success: true, user})
+				if (err) res.json({ success: false, err })
+				res.json({success: true, user })
 			})
-		})
-	}	
-
+		})	
+	}
 }
 
