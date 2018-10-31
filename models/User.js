@@ -7,7 +7,7 @@ const mealSchema = new mongoose.Schema({
 	carbs: Number,
 	fats: Number,
 	proteins: Number,
-	calories: Number,
+	calories: Number
 });
 
 const daySchema = new mongoose.Schema({ 

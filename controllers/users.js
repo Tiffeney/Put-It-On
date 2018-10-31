@@ -96,11 +96,15 @@ module.exports = {
 	},
 	
 	createMeal: (req, res) => {
+		console.log("test")
+		let { dayId } = req.params;
 		User.findById(req.user.id, (err, user) => {
-			user.days.meals.push(req.body);
-			user.days.caloriesLeft = user.days.caloriesLeft - req.body.calories;
+			console.log(user.days.id(dayId))
+			let day = user.days.id(dayId)
+			day.meals.push(req.body);
+			day.caloriesLeft = day.caloriesLeft - req.body.calories;
 
-			user.save((err, day) => {
+			user.save((err, user) => {
 				if (err) res.json({ success: false, err })
 				res.json({success: true, user })
 			})
