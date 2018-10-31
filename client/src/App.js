@@ -7,6 +7,9 @@ import Logout from './components/Access/Logout'
 import Signup from './components/Access/Signup';
 import Profile from './components/Access/Profile';
 import httpClient from './utilities/httpClient';
+import NotFound from './components/Access/NotFound';
+import Calendar from 'react-calendar';
+// import Moment from 'react-moment';
 import './App.css';
 
 class App extends Component {
@@ -40,6 +43,9 @@ class App extends Component {
             <Route path="/profile" component={() => {
               return currentUser ?  <Profile /> : <Redirect to="/login" />
             }} />
+            <Route component={NotFound}/>
+
+            {/* <Route path="/" component={Calendar}/> */}
           
         </Switch>
       </Layout>
