@@ -11,7 +11,7 @@ daysRouter.post('/', usersCtrl.createDay),
 //Create A meal & delete a meal
 
 daysRouter.post('/:dayId/meals', usersCtrl.createMeal) 
-// daysRouter.delete('/days/:dayId', usersCtrl.updateDay) 
+// daysRouter.delete('/:dayId/meals/:meal_id', usersCtrl.deleteMeal) 
 
 // daysRouter.get('/:id/days/:dayId', daysCtrl.show) 
 // daysRouter.patch('/:id/days/:dayId', daysCtrl.update) 

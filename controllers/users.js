@@ -96,10 +96,10 @@ module.exports = {
 	},
 	
 	createMeal: (req, res) => {
-		console.log("test")
+		// console.log("test")
 		let { dayId } = req.params;
 		User.findById(req.user.id, (err, user) => {
-			console.log(user.days.id(dayId))
+			// console.log(user.days.id(dayId))
 			let day = user.days.id(dayId)
 			day.meals.push(req.body);
 			day.caloriesLeft = day.caloriesLeft - req.body.calories;
@@ -110,5 +110,21 @@ module.exports = {
 			})
 		})	
 	}
+
+	// deleteMeal: (req, res) => {
+	// 	let { dayId, meal_id } = req.params;
+	// 	User.findById(req.user.id, (err, user) => {
+	// 		if (err) res.json({ success: false, err });
+	// 		let day = user.days.id(dayId);
+	// 		let meal = user.days.id.meal(meal_id)
+			
+	// 			user.remove();
+	// 			user.save((err, user) => {
+	// 				if (err) res.json({ success: false, err })
+	// 				res.json({success: true, user })
+	// 			})
+			
+	// 	})
+	// }
 }
 
