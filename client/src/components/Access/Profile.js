@@ -18,7 +18,7 @@ class Profile extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
         // SEND DATA
-        let { weight, height, gender, birthday } = this.state;
+        // let { weight, height, gender, birthday } = this.state;
         // let response = await axios.get({ weight, height, gender, birthday  }, "/profile");
         this.setState({ weight: "", height: "", gender: "", birthday: "" });
     }
