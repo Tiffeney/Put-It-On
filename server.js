@@ -6,17 +6,13 @@ const
     logger = require('morgan'),
     mongoose = require('mongoose'),
     MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/put-it-on',
-    PORT=3001;
-    usersRouter = require('./routes/users.js')
+    PORT = process.env.PORT || 3001,
+    usersRouter = require('./routes/users.js'),
     daysRoutes = require('./routes/days.js')
    
-    
-	
-
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, (err) => {
     console.log(err || `Connected to MongoDB.`)
 })
-
 
 app.use(logger('dev'))
 app.use(express.json())
