@@ -29,7 +29,9 @@ class App extends Component {
     return (
       <Layout currentUser={currentUser}>
           <Switch>
-            <Route exact path="/" component={Home}/>
+          <Route exact path="/" component={() => {
+              return currentUser ?  <Home /> : <Redirect to="/login" />
+            }} />
             <Route path="/login" render={(props) => {
                 return <Login {...props} onLoginSuccess={onAuthSuccess}/>
             }}/>

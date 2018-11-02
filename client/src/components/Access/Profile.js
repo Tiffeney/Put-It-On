@@ -17,10 +17,13 @@ class Profile extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        // SEND DATA
-        // let { weight, height, gender, birthday } = this.state;
-        // let response = await axios.get({ weight, height, gender, birthday  }, "/profile");
+        let { weight, height, gender, birthday } = this.state;
+        let user = await ({ weight, height, gender, birthday }, "/api/users");
         this.setState({ weight: "", height: "", gender: "", birthday: "" });
+        if (user) {
+            this.props.login();
+            this.props.history.push('/')
+        }
     }
 
     render () {
@@ -61,6 +64,10 @@ class Profile extends Component {
                                 onChange={handleChange}
                                 value={birthday}/>
                             <button type="submit">Submit</button>
+                            <div>
+                            <button type="edit">Update Profile</button>
+                            <button type="delete">Delete Your Profile</button>
+                            </div>
                         </form>
                     </div>
                 </div>
