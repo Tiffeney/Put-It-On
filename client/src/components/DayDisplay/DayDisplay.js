@@ -11,12 +11,12 @@ class DayDisplay extends Component {
           <div>
             <h1>No Day to display</h1>
             <Form horizontal>
-              <FormGroup controlId="formHorizontalEmail">
+              <FormGroup controlId="formHorizontalcalories">
                 <Col componentClass={ControlLabel} sm={2}>
                   Calories
                 </Col>
                 <Col sm={10}>
-                  <FormControl type="email" placeholder="Email" />
+                  <FormControl type="calories" placeholder="calories" />
                 </Col>
               </FormGroup>
 
@@ -25,15 +25,23 @@ class DayDisplay extends Component {
                   Weight
                 </Col>
                 <Col sm={10}>
-                  <FormControl type="password" placeholder="Password" />
+                  <FormControl type="weight" placeholder="weight" />
                 </Col>
               </FormGroup>
 
-              <FormGroup>
+               <FormGroup controlId="formHorizontalPassword">
+                <Col componentClass={ControlLabel} sm={2}>
+                  Date
+                </Col>
+                <Col sm={10}>
+                  <FormControl type="date" placeholder="date" />
+                </Col>
+              </FormGroup>
+              {/* <FormGroup>
                 <Col smOffset={2} sm={10}>
                   <Checkbox>Remember me</Checkbox>
                 </Col>
-              </FormGroup>
+              </FormGroup> */}
 
               <FormGroup>
                 <Col smOffset={2} sm={10}>

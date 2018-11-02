@@ -7,7 +7,6 @@ const
 function signToken(user) {
     const userData = user.toObject() // Convert user document from mongo into basic JS Object
     delete userData.password; // Delete the password from the user object.
-    // delete userData.days; // Delete the password from the user object.
     return jwt.sign(userData, JWT_SECRET);
 };
 
