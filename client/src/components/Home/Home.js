@@ -12,6 +12,7 @@ class Home extends Component {
         currentDay: null,
         days: [],
         currentUser: ""
+
       };
     
       async componentDidMount() {
@@ -28,10 +29,15 @@ class Home extends Component {
         this.setState({ currentDay: day[0]});
       }
     
-      onChange = date => { 
+      onChange = date => {  
           this.setState({ date })
           this.filterDay(date);
     }
+
+
+
+
+    
     render() {
         let { currentDay } = this.state;
         return(
@@ -45,13 +51,13 @@ class Home extends Component {
                             onChange={this.onChange}
                             value={this.state.date}
                         />
+                        {/* {<div><i class="far fa-calendar-plus"></i></div>} */}
                     </Col>
-                    <Col md={4}>
+                    <Col md={4}>{<div><i class="far fa-calendar-plus"></i></div>}
                         <DayDisplay day={currentDay}/>
                     </Col>
                 </Row>
              <div className="row">
-                
             <div>
             <h6>{moment(this.state.date).format("MM/DD/YYYY")}</h6>
             
