@@ -11,7 +11,7 @@ class Home extends Component {
         date: new Date(),
         currentDay: null,
         days: [],
-        currentUser: ""
+        currentUser: "",
 
       };
     
@@ -33,13 +33,15 @@ class Home extends Component {
           this.setState({ date })
           this.filterDay(date);
     }
-
-
-
-
+     saveDay = () => {
+       //axios call to api
+       //take response and push it to my days array in state
+     }
+    
     
     render() {
         let { currentDay } = this.state;
+        let { saveDay } = this; 
         return(
             <Grid>
                 <Row>
@@ -53,8 +55,8 @@ class Home extends Component {
                         />
                         {/* {<div><i class="far fa-calendar-plus"></i></div>} */}
                     </Col>
-                    <Col md={4}>{<div><i class="far fa-calendar-plus"></i></div>}
-                        <DayDisplay day={currentDay}/>
+                    <Col md={4}>
+                        <DayDisplay saveDay={saveDay} day={currentDay}/>
                     </Col>
                 </Row>
              <div className="row">
