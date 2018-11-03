@@ -22,7 +22,7 @@ const MealTable = ({ meals }) => {
                             <td>{m.proteins}</td>
                             <td>{m.fats}</td>
                             <td>{m.calories}</td>
-                            <td><i class="fas fa-trash"></i></td>
+                            <td><i className="fas fa-trash"></i></td>
                         </tr>
                     )
                 })}

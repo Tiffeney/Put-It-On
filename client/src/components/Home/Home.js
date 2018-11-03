@@ -5,6 +5,7 @@ import axios from 'axios';
 import moment from 'moment';
 import DayDisplay from '../DayDisplay/DayDisplay';
 import { Grid, Row, Col } from 'react-bootstrap';
+import httpClient from '../../utilities/httpClient';
 
 class Home extends Component {
     state = {
@@ -12,36 +13,81 @@ class Home extends Component {
         currentDay: null,
         days: [],
         currentUser: "",
-
+        dayForm: { 
+            weight: "",
+            calories: "",
+            date: ""
+        }
       };
     
       async componentDidMount() {
         let response = await axios.get('/api/days');
         let { days } = response.data.user;
-        this.setState({ days });
+        let currentDay = this.filterDay(new Date(), days);
+        this.setState({ days, currentDay });
       };
 
-      filterDay = (date) => {
+      filterDay = (date, days) => {
         date = moment(date).format("MM/DD/YYYY");
-        let day = this.state.days.filter(d => {
+        let day = days.filter(d => {
             if (d.date === date) return d;
         });
-        this.setState({ currentDay: day[0]});
+        return day[0]
+        // this.setState({ currentDay: day[0]});
       }
     
       onChange = date => {  
           this.setState({ date })
-          this.filterDay(date);
+          let currentDay = this.filterDay(date, this.state.days);
+          this.setState({ currentDay });
+          
     }
-     saveDay = () => {
-       //axios call to api
-       //take response and push it to my days array in state
-     }
+
+    createDay = async (e) => {
+        e.preventDefault();
+        let { dayForm } = this.state;
+        let { date } = dayForm;
+        let res = await httpClient({ method: "post", url: "/api/days", data: dayForm });
+        let { days } = res.data.user;
+        let currentDay = this.filterDay(date, days);
+        this.setState({ 
+            dayForm: {
+                calories: "",
+                weight: "",
+                day: ""
+            },
+            days,
+            currentDay
+        })
+    }
+
+    handleDayChange = (e) => {
+        let { name, value } = e.target;
+        let { dayForm } = this.state;
+        if (name === "date") {
+            this.setState({ dayForm: {...dayForm, [name]: moment(value).format("MM/DD/YYYY") } });
+        } else {
+            this.setState({ dayForm: {...dayForm, [name]: value} });
+        }
+    }
+
+    createMeal = (e) => {
+    
+    }
+
+    deleteMeal = () => {
+
+    }
+    //  saveDay = () => {
+    //    let { day } = this;
+    //    await axios.post('api/days');
+    //    this.props.history.push('/')
+    //  }
     
     
     render() {
         let { currentDay } = this.state;
-        let { saveDay } = this; 
+        let { createDay, handleDayChange } = this; 
         return(
             <Grid>
                 <Row>
@@ -56,19 +102,12 @@ class Home extends Component {
                         {/* {<div><i class="far fa-calendar-plus"></i></div>} */}
                     </Col>
                     <Col md={4}>
-                        <DayDisplay saveDay={saveDay} day={currentDay}/>
+                        <DayDisplay 
+                            handleDayChange={handleDayChange}
+                            createDay={createDay} 
+                            day={currentDay}/>
                     </Col>
                 </Row>
-             <div className="row">
-            <div>
-            <h6>{moment(this.state.date).format("MM/DD/YYYY")}</h6>
-            
-                {/* <h6>{this.state.date.toString()}</h6> */}
-            </div>
-                 {/* <div className="column column-50 column-offset-25">
-                     <img alt="VIP" src="https://tdinj.com/wp-content/uploads/2017/02/Love-Yourself-TDINJ.com_.png"/>
-                 </div> */}
-            </div>
         </Grid>
         )
     }
