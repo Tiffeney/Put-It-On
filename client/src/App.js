@@ -28,7 +28,7 @@ class App extends Component {
     let { onAuthSuccess, onLogout } = this;
     return (
       <Layout currentUser={currentUser}>
-          <Switch>
+        <Switch>
           <Route exact path="/" component={() => {
               return currentUser ?  <Home /> : <Redirect to="/login" />
             }} />
@@ -44,8 +44,7 @@ class App extends Component {
             <Route path="/profile" component={() => {
               return currentUser ?  <Profile /> : <Redirect to="/login" />
             }} />
-            <Route component={NotFound}/>
-          
+            <Route component={NotFound} />
         </Switch>
       </Layout>
     );

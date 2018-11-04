@@ -6,6 +6,7 @@ import moment from 'moment';
 import DayDisplay from '../DayDisplay/DayDisplay';
 import { Grid, Row, Col } from 'react-bootstrap';
 import httpClient from '../../utilities/httpClient';
+// import CreateMealItem from '../CreateMealItem';
 
 class Home extends Component {
     state = {
@@ -71,9 +72,12 @@ class Home extends Component {
         }
     }
 
-    createMeal = (e) => {
-    
-    }
+    // createMeal = (e) => {
+    //     e.preventDefault();
+    //     let { mealForm } = this.state;
+    //     let res = await httpClient({ method: "post", url: "/api/days/dayId/meals/", data: mealForm })
+    //     let { meal }
+    // }
 
     deleteMeal = () => {
 
@@ -105,7 +109,8 @@ class Home extends Component {
                         <DayDisplay 
                             handleDayChange={handleDayChange}
                             createDay={createDay} 
-                            day={currentDay}/>
+                            day={currentDay}
+                            user={this.state.currentUser}/>
                     </Col>
                 </Row>
         </Grid>
