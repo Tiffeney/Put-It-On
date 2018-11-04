@@ -5,12 +5,13 @@ const
 	usersCtrl = require('../controllers/users.js'),
 	verifyToken = require('../serverAuth').verifyToken;
 
+daysRouter.delete('/:dayId', usersCtrl.deleteDay),
+
 daysRouter.use(verifyToken);
 daysRouter.get('/', usersCtrl.listDays),
 daysRouter.post('/', usersCtrl.createDay),
-//Create A meal & delete a meal
 
-daysRouter.post('/:dayId/meals', usersCtrl.createMeal) 
+daysRouter.post('/:dayId/meals', usersCtrl.createMeal)
 daysRouter.delete('/:dayId/meals/:meal_id', usersCtrl.deleteMeal); 
 
 // daysRouter.get('/:id/days/:dayId', daysCtrl.show) 

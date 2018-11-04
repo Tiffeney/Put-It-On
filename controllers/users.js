@@ -94,6 +94,27 @@ module.exports = {
 			})
 		})
 	},
+
+	deleteDay: (req, res) => { //come back
+		let { user } = req; 
+		let { dayId } = req.params;
+		
+		User.findById(user.id, (err, user) => {
+			if (err) res.json({ success: false, err });
+
+			let day = user.days.id(dayId);
+			
+			if (day) {
+				day.remove();
+				user.save((err, user) => {
+					if (err) res.json({ success:false, err});
+					res.json({ success: true, user })
+				})
+			} else {
+				res.json({ success:false, message: 'Day not found' });
+			}
+		})
+	},
 	
 	createMeal: (req, res) => {
 		// console.log("test")
