@@ -3,7 +3,7 @@
 #Put It On
 
 ## Objective
-Put It On is for those individual such as myself who has struggled to gain weight. 
+While more apps are intend   
 
 # Technologies Used
 Node Js
@@ -47,6 +47,7 @@ Json-Web-Token
 <br>
 4.Adding additional to the user profile.
 <br>
+5.About page
 
 Check it out!
 [App - link](https://calm-eyrie-90076.herokuapp.com/login)
