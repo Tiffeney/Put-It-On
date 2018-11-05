@@ -3,7 +3,7 @@
 #Put It On
 
 ## Objective
-While more apps are intend   
+While most apps are built with the intent for a user to keep track of the weight loss journey. Put it On is for a user to keep track of their weight gain progress. When deciding on a topic, I wanted to be closely related to my own experience with gaining and developed this app for others who may   
 
 # Technologies Used
 Node Js
