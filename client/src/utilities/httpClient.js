@@ -37,7 +37,7 @@ httpClient.authenticate = async function(credentials, url) {
     }
 }
 
-httpClient.Logout = function () {
+httpClient.Logout = function () { //.logOut
     localStorage.removeItem('token') //Delete the token from LocalStorage.
     delete this.defaults.headers.common.token; //Delete the token from the httpClient Header.
     return true

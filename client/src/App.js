@@ -41,9 +41,10 @@ class App extends Component {
             <Route path="/signup" render={(props) => {
               return <Signup {...props} onSignupSuccess={onAuthSuccess}/>
             }}/>
-            <Route path="/profile" component={() => {
-              return currentUser ?  <Profile /> : <Redirect to="/login" />
-            }} />
+
+            <Route path="/profile" render={(props) => {
+              return currentUser ? <Profile {...props} currentUser={currentUser} /> : <Redirect to="/login" />
+            }}/>
             <Route component={NotFound} />
         </Switch>
       </Layout>

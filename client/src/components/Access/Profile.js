@@ -1,13 +1,20 @@
-import React, { Component } from 'react';
-import Header from '../universal/Header/Header';
+import React, {Component} from 'react';
+import axios from 'axios';
 
+import { Link } from 'react-router-dom';
+import Form from '../common/Form/Form';
+
+import ListGroup from 'react-bootstrap/lib/ListGroup';
+import Button from 'react-bootstrap/lib/Button';
+import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
+import httpClient from '../../utilities/httpClient';
 
 class Profile extends Component {
     state = { 
-        weight: "",
-        height: "",
-        gender: "",
-        birthday: ""
+        days: [],
+        profile: null,
+        editable: false,
+        user: null
     }
 
     handleChange = (e) => {
@@ -15,65 +22,74 @@ class Profile extends Component {
         this.setState({ [name]: value });
     }
 
-    handleSubmit = async (e) => {
-        e.preventDefault();
-        let { weight, height, gender, birthday } = this.state;
-        let user = await ({ weight, height, gender, birthday }, "/api/users");
-        this.setState({ weight: "", height: "", gender: "", birthday: "" });
-        if (user) {
-            this.props.login();
-            this.props.history.push('/')
+    async componentDidMount() {
+        let { currentUser } = this.props
+        // let response = await axios.get(`/api/users/${currentUser._id}`);  //Obtains group info
+        // console.log(response)
+        // let { user } = response.data
+        
+        // this.setState({
+        //     days: user.days,
+        //     user:user
+        // })
+    }
+    
+    handleSubmit = async (e, user) =>{
+        let {currentUser} = this.props
+
+        let res = await httpClient.authenticate( user, `/api/users/${currentUser._id}`, "patch");
+        if (res) {
+            this.props.onUpdateSuccess();
+            this.toggleEdit(false)
+        }
+        // this.toggleEdit(false)
+    }
+
+    toggleEdit = (editable) =>{
+        this.setState({editable})
+    }
+
+    handleDelete = async (e) => {
+        let { currentUser } = this.props;
+        let res = await axios.delete(`/api/users/${currentUser._id}`);
+        if (res) {
+            this.props.history.push('/logout');
         }
     }
 
     render () {
-        let { weight, height, gender, birthday } = this.state;
-        let { handleChange, handleSubmit } = this;
+        let { currentUser } = this.props;
+        // let currentUser = {}
+        let { editable, user } = this.state;
         return (
             <div>
-                <Header text={"Welcome To Your Profile"}/>
-                <div className="row">
-                    <div className="column column-50 column-offset-25">
-                        <form onSubmit={handleSubmit}>
-                            <label>Your Current Weight: </label>
-                            <input
-                                type="text"
-                                name="weight"
-                                placeholder="101 pounds"
-                                onChange={handleChange}
-                                value={weight}/>
-                                 <label>Height: </label>
-                            <input
-                                type="text"
-                                name="height"
-                                placeholder="5'3"
-                                onChange={handleChange}
-                                value={height}/>
-                                 <label>Gender: </label>
-                            <input
-                                type="text"
-                                name="gender"
-                                placeholder="Female, Male, or Other"
-                                onChange={handleChange}
-                                value={gender}/>
-                            <label>Birthday: </label>
-                            <input
-                                type="text"
-                                name="birthday"
-                                placeholder="12/13/1990"
-                                onChange={handleChange}
-                                value={birthday}/>
-                            <button type="submit">Submit</button>
-                            <div>
-                            <button type="edit">Update Profile</button>
-                            <button type="delete">Delete Your Profile</button>
-                            </div>
-                        </form>
-                    </div>
+            <h1>Your Profile</h1> 
+
+            <div> 
+            {
+                !editable && currentUser && 
+                <div>
+                    Your name: { currentUser.name } <br />
+                    Your email: { currentUser.email } <br />    
                 </div>
+            }
+            </div>
+            {
+            editable && user &&
+                <div>
+                  <Form user={user} onSubmit={this.handleSubmit} />
+                 </div>
+            }
+
+                <ButtonToolbar>
+                    <Button onClick={()=> this.toggleEdit(true)}variant="primary">Edit</Button>
+                    <Button onClick={this.handleDelete} variant="primary" >Delete</Button>
+                </ButtonToolbar>
+            
+            
+            
             </div>
         )
     }
 }
-
 export default Profile;
