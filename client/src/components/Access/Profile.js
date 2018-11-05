@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Form from '../common/Form/Form';
 
-import ListGroup from 'react-bootstrap/lib/ListGroup';
 import Button from 'react-bootstrap/lib/Button';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import httpClient from '../../utilities/httpClient';
@@ -24,20 +23,13 @@ class Profile extends Component {
 
     async componentDidMount() {
         let { currentUser } = this.props
-        // let response = await axios.get(`/api/users/${currentUser._id}`);  //Obtains group info
-        // console.log(response)
-        // let { user } = response.data
-        
-        // this.setState({
-        //     days: user.days,
-        //     user:user
-        // })
     }
     
-    handleSubmit = async (e, user) =>{
-        let {currentUser} = this.props
+    handleSubmit = async (e, updatedInfo) =>{
+        let { currentUser } = this.props;
 
-        let res = await httpClient.authenticate( user, `/api/users/${currentUser._id}`, "patch");
+        let res = await axios.patch(`/api/users/${currentUser._id}`, updatedInfo); 
+        // let res = await httpClient.authenticate( user, `/api/users/${currentUser._id}`, "patch");
         if (res) {
             this.props.onUpdateSuccess();
             this.toggleEdit(false)
@@ -46,7 +38,7 @@ class Profile extends Component {
     }
 
     toggleEdit = (editable) =>{
-        this.setState({editable})
+        this.setState({ editable: editable })
     }
 
     handleDelete = async (e) => {
@@ -75,14 +67,14 @@ class Profile extends Component {
             }
             </div>
             {
-            editable && user &&
+            editable && currentUser &&
                 <div>
                   <Form user={user} onSubmit={this.handleSubmit} />
                  </div>
             }
 
                 <ButtonToolbar>
-                    <Button onClick={()=> this.toggleEdit(true)}variant="primary">Edit</Button>
+                    <Button onClick={()=> this.toggleEdit(true)} variant="primary">Edit</Button>
                     <Button onClick={this.handleDelete} variant="primary" >Delete</Button>
                 </ButtonToolbar>
             

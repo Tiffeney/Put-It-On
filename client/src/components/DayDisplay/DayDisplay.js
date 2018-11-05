@@ -7,10 +7,6 @@ import httpClient from '../../utilities/httpClient';
 class DayDisplay extends Component {
 
   handleDelete = () => {
-    // let response = axios.delete(`/api/days/${this.props.day._id}`).then((res) => {
-    //   console.log(res)
-    //  })
-  
     let res = httpClient({ method: "delete", url: `/api/days/${this.props.day._id}` });
   }
 
@@ -32,7 +28,7 @@ class DayDisplay extends Component {
               Date: {day.date}<br/>
               Weight: {day.weight}<br/>
               CaloriesLeft: {day.caloriesLeft}
-              <button onClick={this.handleDelete}>Delete</button>
+              {/* <button onClick={this.handleDelete}>Delete</button> */}
               <div><i className="fas fa-utensils"></i></div>
               {day.meals.length > 0 ? <MealTable meals={day.meals}/> : <h3>Awaiting Meals</h3>}
               {/* {day.caloriesLeft}, {day.weight}, {day.date} */}

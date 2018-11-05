@@ -8,6 +8,8 @@ import Signup from './components/Access/Signup';
 import Profile from './components/Access/Profile';
 import httpClient from './utilities/httpClient';
 import NotFound from './components/Access/NotFound';
+import axios from 'axios';
+
 // import Moment from 'react-moment';
 import './App.css';
 
@@ -15,7 +17,14 @@ class App extends Component {
   state = { currentUser: httpClient.getCurrentUser() };
 
   onAuthSuccess = () => {
-    this.setState({ currentUser: httpClient.getCurrentUser() });
+    if (this.state.currentUser) {
+      let response = axios.get(`/api/users/${this.state.currentUser._id}`)
+      response.then((res) => {
+        this.setState({ currentUser: res.data.payload })
+      })
+    } else {
+      this.setState({ currentUser: httpClient.getCurrentUser() })
+    }
   }
 
   onLogout = () => {
@@ -42,9 +51,7 @@ class App extends Component {
               return <Signup {...props} onSignupSuccess={onAuthSuccess}/>
             }}/>
 
-            <Route path="/profile" render={(props) => {
-              return currentUser ? <Profile {...props} currentUser={currentUser} /> : <Redirect to="/login" />
-            }}/>
+            <Route path="/profile" render={props => currentUser ? <Profile {...props} onUpdateSuccess={onAuthSuccess} currentUser={currentUser}/> : <Redirect to="/login"/>}/>
             <Route component={NotFound} />
         </Switch>
       </Layout>

@@ -30,10 +30,11 @@ module.exports = {
 	// update an existing user
 	update: (req, res) => {
 		User.findById(req.params.id, (err, user) => {
-			if(!req.body.password) delete req.body.password
+			if(!req.body.name) delete req.body.name
+			// console.log('userrrrrr', req.body)
 			Object.assign(user, req.body)
 			user.save((err, updatedUser) => {
-				if(err) return res.json({message: "ERROR", payload: null, code: err.code})
+				if(err) return res.json({ message: "ERROR", payload: null, code: err.code })
 				res.json({ message: "SUCCESS", payload: user })
 			})
 		})
@@ -49,7 +50,6 @@ module.exports = {
 
 	// Authenticate User / Login Action
 	authenticate: (req, res) => {
-		console.log("user")
 		let { email, password } = req.body;
 		User.findOne({ email }, (err, user) => {
 			if (!user || !user.validPassword(password)) {
@@ -63,7 +63,6 @@ module.exports = {
 
 // A Day doesn't exist without having a User. A User must have a JWT in order to hint the daysrouter
 	listDays: (req, res) => {
-		console.log("req", req.user)
 		let { user } = req;
 		User.findById(user.id, (err, user) => {
 			if (err) res.json({ success: false, err })
@@ -117,10 +116,8 @@ module.exports = {
 	},
 	
 	createMeal: (req, res) => {
-		// console.log("test")
 		let { dayId } = req.params;
 		User.findById(req.user.id, (err, user) => {
-			// console.log(user.days.id(dayId))
 			let day = user.days.id(dayId)
 			day.meals.push(req.body);
 			day.caloriesLeft = day.caloriesLeft - req.body.calories;

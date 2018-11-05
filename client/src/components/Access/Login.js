@@ -19,7 +19,7 @@ class Login extends Component {
         let { email, password } = this.state;
         let user = await httpClient.authenticate({ email, password }, "/api/users/authenticate");
         this.setState({ email: "", password: "" });
-        debugger
+        
         if (user) {
             this.props.onLoginSuccess();
             this.props.history.push('/')
