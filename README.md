@@ -8,11 +8,11 @@ Put It On is for those individual such as myself who has struggled to gain weigh
 # Technologies Used
 Node Js
 <br>
-HTML
-<br>
-CSS
-<br>
 Express
+<br>
+Node
+<br>
+React
 <br>
 Mongo
 <br>
@@ -21,13 +21,23 @@ Mongoose
 MongooseDB
 <br>
 Materialize
+<br>
+React-bootstrap
+<br>
+React-Calendar
+<br>
+Axios
+<br>
+Jason-Web-Token
 
 # Screenshot
 <a href="https://imgur.com/5rVuHao"><img src="https://i.imgur.com/5rVuHao.jpg" title="source: imgur.com" /></a>
 <a href="https://imgur.com/BKsEqEN"><img src="https://i.imgur.com/BKsEqEN.jpg" title="source: imgur.com" /></a>
 <a href="https://imgur.com/komOIX5"><img src="https://i.imgur.com/komOIX5.jpg" title="source: imgur.com" /></a>
+<a href="https://imgur.com/kVINk62"><img src="https://i.imgur.com/kVINk62.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/uYRv4ky"><img src="https://i.imgur.com/uYRv4ky.png" title="source: imgur.com" /></a>
-<a href="https://imgur.com/7MEHh53"><img src="https://i.imgur.com/7MEHh53.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/K8ZAXlN"><img src="https://i.imgur.com/K8ZAXlN.png" title="source: imgur.com" /></a>
+<a href="https://imgur.com/K8zqTHt"><img src="https://i.imgur.com/K8zqTHt.png" title="source: imgur.com" /></a>
 
 
 # Next Steps
