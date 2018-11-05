@@ -49,6 +49,7 @@ class Home extends Component {
         let { dayForm } = this.state;
         let { date } = dayForm;
         let res = await httpClient({ method: "post", url: "/api/days", data: dayForm });
+        console.log("res", res)
         let { days } = res.data.user;
         let currentDay = this.filterDay(date, days);
         this.setState({ 
