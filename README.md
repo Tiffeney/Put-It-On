@@ -26,7 +26,7 @@ React-Calendar
 <br>
 Axios
 <br>
-Jason-Web-Token
+Json-Web-Token
 
 # Screenshot
 <a href="https://imgur.com/5rVuHao"><img src="https://i.imgur.com/5rVuHao.jpg" title="source: imgur.com" /></a>
