@@ -50,5 +50,6 @@ Json-Web-Token
 5.About page
 
 Check it out!
+https://trello.com/b/VbHCc6uB/put-it-on
 [App - link](https://calm-eyrie-90076.herokuapp.com/login)
 
