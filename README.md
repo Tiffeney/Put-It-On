@@ -10,8 +10,6 @@ Node Js
 <br>
 Express
 <br>
-Node
-<br>
 React
 <br>
 Mongo
@@ -41,13 +39,13 @@ Jason-Web-Token
 
 
 # Next Steps
-1.See a "default" profile photo on their profile page before adding their own photo.
+1.Styling.
 <br>
-2.Visit city pages via pretty urls, like "/cities/san-francisco.
+2.Incorporating meals on the models for a user to track calories remaining for a day, proteins, fats & carbs.
 <br>
-3.See the number of posts they've written for each city, next to the city's name in their profile.
+3.I would like for a user to add in comments or add physical activity.
 <br>
-4.Comment on individual posts.
+4.Adding additional to the user profile.
 <br>
 
 Check it out!
